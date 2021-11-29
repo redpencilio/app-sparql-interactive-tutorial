@@ -19,6 +19,14 @@ defmodule Dispatcher do
   # Run `docker-compose restart dispatcher` after updating
   # this file.
 
+  options "*_path" do
+    send_resp( conn, 200, "Option calls are accepted by default")
+  end
+
+  match "/query-equivalence/*path", @any do
+    forward conn, path, "http://query-equivalence/"
+  end
+
   match "/*_", %{ last_call: true } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end

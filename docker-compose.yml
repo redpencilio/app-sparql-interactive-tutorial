@@ -1,6 +1,10 @@
 version: '3.4'
 
 services:
+  frontend:
+    image: sergiofenoll/frontend-sparql-interactive-tutorial:latest
+    links:
+      - identifier:backend
   identifier:
     image: semtech/mu-identifier:1.9.1
     links:
@@ -29,3 +33,7 @@ services:
       - database:database
     volumes:
       - ./config/resources:/config
+  query-equivalence:
+    image: sergiofenoll/query-equivalence:1.0.0
+    links:
+      - database:database
