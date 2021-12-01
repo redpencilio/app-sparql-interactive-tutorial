@@ -1,39 +1,52 @@
 version: '3.4'
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
 
 services:
   frontend:
     image: redpencil/frontend-sparql-interactive-tutorial
     links:
       - identifier:backend
+    logging: *default-logging
+    restart: always
   identifier:
     image: semtech/mu-identifier:1.9.1
     links:
       - dispatcher:dispatcher
-    ports:
-      - "80:80"
+    logging: *default-logging
+    restart: always
   dispatcher:
     image: semtech/mu-dispatcher:2.0.0
     links:
       - resource:resource
     volumes:
       - ./config/dispatcher:/config
+    logging: *default-logging
+    restart: always
   database:
     image: redpencil/virtuoso:1.0.0
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/application"
-    ports:
-      - "8890:8890"
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
+    logging: *default-logging
+    restart: always
   resource:
     image: semtech/mu-cl-resources:1.20.0
     links:
       - database:database
     volumes:
       - ./config/resources:/config
+    logging: *default-logging
+    restart: always  
   query-equivalence:
     image: redpencil/query-equivalence-service
     links:
       - database:database
+    logging: *default-logging
+    restart: always
