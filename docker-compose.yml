@@ -22,6 +22,7 @@ services:
     image: semtech/mu-dispatcher:2.0.0
     links:
       - resource:resource
+      - database:database
     volumes:
       - ./config/dispatcher:/config
     logging: *default-logging
