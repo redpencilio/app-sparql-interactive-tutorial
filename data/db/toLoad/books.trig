@@ -1,0 +1,12 @@
+@prefix : <http://mu.semte.ch/graphs/books/>;
+
+: {
+:wheelOfTime :genre "Fantasy" .
+:wheelOfTime :price 20 .
+
+:dune :genre "Science fiction" .
+:dune :price 10 .
+
+:discworld :genre "Fantasy" .
+:discworld :price 15 .
+}

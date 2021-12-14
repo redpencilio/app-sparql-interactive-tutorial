@@ -27,6 +27,10 @@ defmodule Dispatcher do
     forward conn, path, "http://query-equivalence/"
   end
 
+  match "/sparql/*path", @any do
+    forward conn, path, "http://database:8890/sparql/"
+  end
+
   match "/*_", %{ last_call: true } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
