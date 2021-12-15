@@ -1,4 +1,4 @@
-@prefix : <http://mu.semte.ch/graphs/books/>;
+@prefix : <http://mu.semte.ch/graphs/books/> .
 
 : {
 :wheelOfTime :genre "Fantasy" .
