@@ -29,6 +29,14 @@ defmodule Dispatcher do
     forward conn, path, "http://frontend/"
   end
 
+  match "/assets/*path", @any do
+    forward conn, path, "http://frontend/assets/"
+  end
+
+  match "/*path", @html do
+    forward conn, [], "http://frontend/"
+  end
+
   match "/query-equivalence/*path", @json do
     forward conn, path, "http://query-equivalence/"
   end
