@@ -1,24 +1,23 @@
-# mu-project
+# SPARQL Interactive Tutorial
 
-Bootstrap a mu.semte.ch microservices environment in three easy steps.
+This is an interactive tutorial to guide you through SPARQL, a W3C standard designed for querying RDF graphs. 
 
-## How to
+## Installation
 
-Setting up your environment is done in three easy steps:  first you configure the running microservices and their names in `docker-compose.yml`, then you configure how requests are dispatched in `config/dispatcher.ex`, and lastly you start everything.
+### Requirements
 
-### Hooking things up with docker-compose
+- [Docker](https://docs.docker.com/engine/install/) 
+- [git-lfs](https://github.com/git-lfs/git-lfs/wiki/Installation)
 
-Alter the `docker-compose.yml` file so it contains all microservices you need.  The example content should be clear, but you can find more information in the [Docker Compose documentation](https://docs.docker.com/compose/).  Don't remove the `identifier` and `db` container, they are respectively the entry-point and the database of your application.  Don't forget to link the necessary microservices to the dispatcher and the database to the microservices.
+### Steps
 
-### Configure the dispatcher
+1. Clone this repository
+2. Run `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d` into the root folder
+3. Go to http://localhost
+4. Enjoy!
 
-Next, alter the file `config/dispatcher.ex` based on the example that is there by default.  Dispatch requests to the necessary microservices based on the names you used for the microservice.
+## URLs
 
-### Boot up the system
-
-Boot your microservices-enabled system using docker-compose.
-
-    cd /path/to/mu-project
-    docker-compose up
-
-You can shut down using `docker-compose stop` and remove everything using `docker-compose rm`.
+* [SPARQL Tutorial](http://localhost)
+* [SPARQL Endpoint](http://localhost:8890/sparql)
+* [Virtuoso Conductor](http://localhost:8890/conductor/)
