@@ -34,7 +34,7 @@ defmodule Dispatcher do
   end
 
   match "/*path", @html do
-    forward conn, [], "http://frontend/"
+    forward conn, path, "http://frontend/"
   end
 
   match "/query-equivalence/*path", @json do
